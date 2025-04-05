@@ -1,5 +1,6 @@
 
-#clientForm {
+#clientForm,
+#clientForm-back {
     display: flex;
     margin: 25px auto;
     flex-direction: column;
@@ -58,7 +59,9 @@
 }
 
 #formContainer {
-    margin: 25px auto;
+    margin: 0px auto;
+    max-width: 800px;
+    min-width: 500px;
 }
 
 .contacto,
@@ -88,7 +91,9 @@
 }
 
 #nombreApellido,
-#dni {
+#nombreApellido-back,
+#dni,
+#dni-back {
     width: 100%;
 }
 
@@ -113,6 +118,14 @@
 }
 
 #problema,
+#problema-back,
 .form-select {
     background: none;
+}
+
+#dispositivo-back,
+#marca-back,
+#modelo-back {
+    background: none;
+    border: none;
 }

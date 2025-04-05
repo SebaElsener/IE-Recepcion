@@ -73,6 +73,9 @@ app.post('/', async (req, res) => {
     await saveOrder(orderToSave)
     res.send(orderToSave.id)
 })
+app.post('/consultas', async (req, res) => {
+	console.log(req.body)
+})
 
 const connectedServer = httpServer.listen(8080, () => { console.log(`Server escuchando en puerto ${connectedServer.address().port}`) })
 connectedServer.on('error', error => (`Error en servidor ${ error }`))
