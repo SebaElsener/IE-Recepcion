@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "brand": "Motorola"
+  },
+  {
+    "id": "2",
+    "brand": "Apple"
+  },
+  {
+    "id": "3",
+    "brand": "Iphone"
+  },
+  {
+    "id": "4",
+    "brand": "Samsung"
+  },
+  {
+    "id": "5",
+    "brand": "Huawei"
+  },
+  {
+    "id": "6",
+    "brand": "Redmi"
+  },
+  {
+    "id": "7",
+    "brand": "Sony"
+  },
+  {
+    "id": "8",
+    "brand": "CAT"
+  },
+  {
+    "id": 9,
+    "brand": "2334"
+  },
+  {
+    "id": 10,
+    "brand": "marca3"
+  },
+  {
+    "id": 11,
+    "brand": "marca4"
+  }
+]

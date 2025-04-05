@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "device": "Celular"
+  },
+  {
+    "id": "2",
+    "device": "Tablet"
+  },
+  {
+    "id": "3",
+    "device": "Notebook"
+  },
+  {
+    "id": "4",
+    "device": "PC"
+  }
+]

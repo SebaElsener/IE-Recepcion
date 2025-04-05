@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IE Reparaciones</title>
+    <link rel="stylesheet" href="/css/form.css">
+    <script src="/script/dselect.min.js"></script>
+    <link rel="stylesheet" href="/css/dselect.css">
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/script/toastify-js-master/src/toastify.js"></script>
+    <link rel="stylesheet" href="/script/toastify-js-master/src/toastify.css">
+</head>
+<body>
+    <main>
+        <div id="title">
+            <h3 class="title">
+                Registro clientes
+            </h3>
+        </div>
+        <div id="formContainer">
+            <form id="clientForm">
+                <div class="form-group presupuestoFechaContainer">
+                <label class="formLabel presupuestoLabel" for="presupuesto">Presupuesto Nro: 
+                    <input class="formInput" type="number" name="id" id="presupuesto" readonly value='<%= orderId %>'>
+                </label>
+                <label class="formLabel fechaLabel" for="fechaRecepcion">Fecha recepción: 
+                    <input class="formInput" id="fechaRecepcion" class="disabledInput" name="fechaRecepcion" readonly type="text">
+                </label>
+                </div>
+                <div class="form-group nombreApellidoContainer">
+                <label class="formLabel nombreLabel" for="nombreApellido">
+                    <input class="formInput" type="text" name="nombreApellido" id="nombreApellido" required placeholder="Nombre y apellido">
+                </label>
+                <label class="formLabel dniLabel" for="dni">
+                    <input class="formInput" type="number" name="dni" id="dni" required placeholder="DNI">
+                </label>
+                </div>
+                <div class="form-group device-brand-model">
+                <label class="formLabel" for="dispositivo">
+                    <select class="selectSearch" name="dispositivo" id="dispositivo" required>
+                        <option value="">Dispositivo</option>
+                        <% devices.forEach(function(device) { %>
+                            <option value='<%= device.device %>'>
+                                <%= device.device %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </label>
+                <label class="formLabel brand" for="marca">
+                    <select class="selectSearch" name="marca" id="marca" required>
+                        <option value="">Marca</option>
+                        <% brands.forEach(function(brand) { %>
+                            <option value='<%= brand.brand %>'>
+                                <%= brand.brand %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </label>
+                <label class="formLabel model" for="modelo">
+                    <select class="selectSearch" name="modelo" id="modelo" required>
+                        <option value="">Modelo</option>
+                        <% models.forEach(function(model) { %>
+                            <option value='<%= model.model %>'>
+                                <%= model.model %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </label>
+                </div>
+                <div class="form-group">
+                <label class="formLabel problema" for="problema">
+                    <textarea class="form-control" rows="4" name="problema" id="problema" placeholder="Detalle problema" required></textarea>
+                </label>
+                </div>
+                <div class="form-group fechasContainer">
+                    <label class="formLabel fechaDiagnosticoLabel" for="fechaDiagnostico">Fecha estimada diagnóstico: 
+                        <input class="formInput" type="date" name="fechaDiagnostico" id="fechaDiagnostico" required>
+                    </label>
+                    <label class="formLabel fechaReparacionLabel" for="fechaReparacion">Fecha estimada reparación: 
+                        <input class="formInput" type="date" name="fechaReparacion" id="fechaReparacion" required>
+                    </label>
+                </div>
+                <div class="form-group">
+                <label class="formLabel contacto" for="contacto">
+                    <input class="formInput contacto inputUnderLine" type="text" name="contacto" id="contacto" required placeholder="Contacto">
+                </label>
+                </div>
+                <div class="form-group signContainer">
+                    <div>
+                    <canvas id="canvas" style="border:1px solid #999; cursor:crosshair;"></canvas>
+                    </div>
+                    <div>
+                    <a id="limpiar" class="btn btn-outline-secondary btn-sm"><i class="limpiarFirma fas fa-trash-alt">Limpiar firma</i></a>
+                    </div>
+                </div>
+                <button id="sendBtn" class="sendBtn btn btn-outline-primary btn-block" type="submit" formmethod="post" formaction="/">Registrar</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="/script/form.js"></script>
+    <script src="/script/FormInteract.js"></script>
+
+</body>
+</html>

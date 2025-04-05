@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "device": "Celular"
+  },
+  {
+    "id": "2",
+    "device": "Tablet"
+  },
+  {
+    "id": "3",
+    "device": "Notebook"
+  },
+  {
+    "id": "4",
+    "device": "PC"
+  },
+  {
+    "id": 5,
+    "device": "banana"
+  },
+  {
+    "id": 6,
+    "device": "dispo1"
+  },
+  {
+    "id": 7,
+    "device": "dispo2"
+  },
+  {
+    "id": 8,
+    "device": "dispo3"
+  },
+  {
+    "id": 9,
+    "device": "dispo4"
+  },
+  {
+    "id": 10,
+    "device": "secador de pelo"
+  }
+]

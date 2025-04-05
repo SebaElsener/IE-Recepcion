@@ -1,0 +1,60 @@
+[
+    {
+        "Device":   
+            [
+            {
+                "id": "1",
+                "device": "Celular"
+            },
+                {
+                "id": "2",
+                "device": "Tablet"
+            },
+                {
+                "id": "3",
+                "device": "Notebook"
+            },
+                {
+                "id": "4",
+                "device": "PC"
+            }
+            ]
+    },
+    {
+        "Brand":
+            [
+            {
+                "id": "1",
+                "brand": "Motorola"
+            },
+                {
+                "id": "2",
+                "brand": "Apple"
+            },
+                {
+                "id": "3",
+                "brand": "Iphone"
+            },
+                {
+                "id": "4",
+                "brand": "Samsung"
+            },
+                {
+                "id": "5",
+                "brand": "Huawei"
+            },
+                {
+                "id": "6",
+                "brand": "Redmi"
+            },
+                {
+                "id": "7",
+                "brand": "Sony"
+            },
+                {
+                "id": "8",
+                "brand": "CAT"
+            }
+            ]
+    }
+]

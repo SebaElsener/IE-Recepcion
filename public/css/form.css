@@ -1,0 +1,118 @@
+
+#clientForm {
+    display: flex;
+    margin: 25px auto;
+    flex-direction: column;
+    max-width: 800px;
+    min-width: 500px;
+    background-color: mintcream;
+    box-shadow: 20px 20px 30px darkslategrey;
+    padding: 40px 60px;
+    border-radius: 3px;
+}
+
+.formInput,
+.form-select,
+.data-dselect-text {
+    background: none;
+    border: none;
+    color: #000000cc;
+}
+
+.inputUnderLine {
+    border-bottom: 1px solid #2f4f4f33;
+}
+
+.problema {
+    width: 100%;
+}
+
+.form-group {
+    margin: 15px 0px;
+}
+
+.device-brand-model {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sendBtn {
+    background: rgba(216, 112, 147, 0.445);
+    border: none;
+    margin-top: 25px;
+}
+
+#sendBtn {
+    font-size: 1rem;
+}
+
+#title {
+    width: 100%;
+    display: flex;
+    margin-top: 10px;
+}
+
+.title {
+    margin: auto;
+    color: #000000a8;
+}
+
+#formContainer {
+    margin: 25px auto;
+}
+
+.contacto,
+.firma {
+    width: 100%;
+}
+
+.nombreApellidoContainer,
+.presupuestoFechaContainer {
+    display: flex;
+    gap: 5%;
+    margin-top: 0;
+}
+
+.nombreLabel,
+.dniLabel,
+.presupuestoLabel,
+.fechaLabel {
+    flex-grow: 1;
+    border-bottom: 1px solid #2f4f4f33;
+}
+
+.presupuestoLabel,
+.fechaLabel {
+    border-bottom: none;
+    color: #000000cc;
+}
+
+#nombreApellido,
+#dni {
+    width: 100%;
+}
+
+.formLabel {
+    color: #000000cc;
+}
+
+.limpiarFirma {
+    font-style: normal;
+    font-size: .9rem;
+}
+
+.signContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.fechasContainer {
+    display: flex;
+}
+
+#problema,
+.form-select {
+    background: none;
+}

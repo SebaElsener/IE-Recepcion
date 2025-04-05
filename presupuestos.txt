@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "fechaRecepcion": "29/3/2025",
+    "nombreApellido": "dsfsf",
+    "dni": "32443",
+    "dispositivo": "telefono",
+    "marca": "Huawei",
+    "modelo": "A32",
+    "problema": "fsddsf",
+    "fechaDiagnostico": "2025-03-06",
+    "fechaReparacion": "2025-03-20",
+    "contacto": "sdf",
+    "firma": "sf"
+  }
+]

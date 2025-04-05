@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "model": "Iphone 14 Pro"
+  },
+  {
+    "id": "2",
+    "model": "Iphone X"
+  },
+  {
+    "id": "3",
+    "model": "Iphone SE"
+  },
+  {
+    "id": "4",
+    "model": "A32"
+  },
+  {
+    "id": "5",
+    "model": "Note10"
+  },
+  {
+    "id": "6",
+    "model": "E6 play"
+  },
+  {
+    "id": "7",
+    "model": "G3"
+  },
+  {
+    "id": "8",
+    "model": "G4 Plus"
+  },
+  {
+    "id": 9,
+    "model": "modelo3"
+  },
+  {
+    "id": 10,
+    "model": "modelo4"
+  },
+  {
+    "id": 11,
+    "model": "Nuevo modelo"
+  }
+]
