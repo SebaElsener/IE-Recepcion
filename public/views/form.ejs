@@ -95,14 +95,6 @@
                                 <input class="formInput contacto inputUnderLine" type="text" name="contacto" id="contacto" required placeholder="Contacto">
                             </label>
                             </div>
-                            <div class="form-group signContainer">
-                                <div>
-                                <canvas id="canvas" style="border:1px solid #999; cursor:crosshair;"></canvas>
-                                </div>
-                                <div>
-                                <a id="limpiar" class="btn btn-outline-secondary btn-sm"><i class="limpiarFirma fas fa-trash-alt">Limpiar firma</i></a>
-                                </div>
-                            </div>
                             <button id="sendBtn" class="sendBtn btn btn-outline-primary btn-block" type="submit" formmethod="post" formaction="/">Registrar</button>
                         </form>
                     </div>
@@ -120,7 +112,7 @@
                             <label class="formLabel nombreLabel" for="nombreApellido">
                                 <input class="formInput" type="text" name="nombreApellido" id="nombreApellido-back" placeholder="Consultar por nombre o apellido">
                             </label>
-                            <label class="formLabel dniLabel" for="dni">
+                            <label class="formLabel dniLabel" for="dni" id="dniLabel-back">
                                 <input class="formInput" type="number" name="dni" id="dni-back" placeholder="Consultar por DNI">
                             </label>
                             </div>
@@ -154,8 +146,11 @@
                             </label>
                             </div>
                             <div class="form-group signContainer">
-                                <div>
-                                    <div id="canvas-back" style="border:1px solid #999; width: 350px; height: 250px;"></div>
+                                <div id="signImage">
+                                    <canvas id="canvas" style="border:1px solid #999; cursor:crosshair;"></canvas>
+                                </div>
+                                <div id="clearSignContainer">
+                                    <a id="limpiar" class="btn btn-outline-secondary btn-sm"><i class="limpiarFirma fas fa-trash-alt">Limpiar firma</i></a>
                                 </div>
                             </div>
                             <button id="sendBtn-back" class="sendBtn btn btn-outline-primary btn-block" type="submit" formmethod="post" formaction="/consultas">Consultar</button>

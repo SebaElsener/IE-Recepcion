@@ -59,6 +59,18 @@ const saveOrder = async (item) => {
 	return await presupuestos.saveOrder(item)
 }
 
+const nombreApellidoQuery = async (nombreApellido) => {
+
+}
+
+const presupuestoQuery = async (presupuesto) => {
+	return await presupuestos.getById(presupuesto)
+}
+
+const dniQuery = async (dni) => {
+
+}
+
 export {
 	getBrands,
 	getModels,
@@ -68,5 +80,8 @@ export {
 	saveDevice,
 	saveOrder,
 	saveBrand,
-	saveModel
+	saveModel,
+	presupuestoQuery,
+	nombreApellidoQuery,
+	dniQuery
 }

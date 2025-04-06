@@ -1,4 +1,8 @@
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 #clientForm,
 #clientForm-back {
     display: flex;
@@ -128,4 +132,9 @@
 #modelo-back {
     background: none;
     border: none;
+}
+
+#dniLabel-back {
+    display: flex;
+    align-items: baseline;
 }
