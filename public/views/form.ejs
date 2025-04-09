@@ -101,7 +101,7 @@
                     <div class="back">
                         <form id="clientForm-back">
                             <div class="form-group presupuestoFechaContainer">
-                            <label class="formLabel presupuestoLabel" for="presupuesto">Presupuesto Nro: 
+                            <label id="presupuestoLabelBack" class="formLabel presupuestoLabel" for="presupuesto">Presupuesto Nro: 
                                 <input class="formInput" type="number" name="id" id="presupuesto-back" placeholder="Consultar por presupuesto">
                             </label>
                             <label class="formLabel fechaLabel" for="fechaRecepcion">Fecha recepción: 
@@ -109,7 +109,7 @@
                             </label>
                             </div>
                             <div class="form-group nombreApellidoContainer">
-                            <label class="formLabel nombreLabel" for="nombreApellido">
+                            <label id="nombreLabelBack" class="formLabel nombreLabel" for="nombreApellido">
                                 <input class="formInput" type="text" name="nombreApellido" id="nombreApellido-back" placeholder="Consultar por nombre o apellido">
                             </label>
                             <label class="formLabel dniLabel" for="dni" id="dniLabel-back">
@@ -132,7 +132,7 @@
                                 <textarea class="form-control" rows="4" name="problema" id="problema-back" readonly></textarea>
                             </label>
                             </div>
-                            <div class="form-group fechasContainer">
+                            <div id="fechasContainerBack" class="form-group fechasContainer">
                                 <label class="formLabel fechaDiagnosticoLabel" for="fechaDiagnostico">Fecha estimada diagnóstico: 
                                     <input class="formInput" type="date" name="fechaDiagnostico" id="fechaDiagnostico-back" readonly>
                                 </label>
@@ -145,15 +145,31 @@
                                 <input class="formInput contacto inputUnderLine" type="text" name="contacto" id="contacto-back" readonly>
                             </label>
                             </div>
-                            <div class="form-group signContainer">
+                            <div id="signContainer" class="form-group signContainer">
                                 <div id="signImage">
-                                    <canvas id="canvas" style="border:1px solid #999; cursor:crosshair;"></canvas>
+                                    <canvas id="canvas" style="cursor:crosshair;"></canvas>
                                 </div>
-                                <div id="clearSignContainer">
-                                    <a id="limpiar" class="btn btn-outline-secondary btn-sm"><i class="limpiarFirma fas fa-trash-alt">Limpiar firma</i></a>
+                                <div id="signOptionsContainer">
+                                    <div id="clearSignContainer">
+                                        <!-- <a id="limpiar" class="btn btn-outline-secondary btn-sm"><i class="limpiarFirma fas fa-trash-alt">Limpiar firma</i></a> -->
+                                    </div>
+                                    <div id="signRegContainer">
+                                    </div>
                                 </div>
                             </div>
-                            <button id="sendBtn-back" class="sendBtn btn btn-outline-primary btn-block" type="submit" formmethod="post" formaction="/consultas">Consultar</button>
+                            <div id="sendBtnContainer">
+                                <div id="goBackPage">
+                                    <p class="pageLink"><<</p>
+                                </div>
+                                <div id="sendBtn-back-container">
+                                    <button id="sendBtn-back" class="sendBtn btn btn-outline-primary btn-block" type="submit" formmethod="post" formaction="/consultas">
+                                        Consultar
+                                    </button>
+                                </div>
+                                <div id="goFwdPage">
+                                    <p class="pageLink">>></p>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -13,7 +13,8 @@ import {
 	saveBrand,
 	presupuestoQuery,
 	dniQuery,
-	nombreApellidoQuery
+	nombreApellidoQuery,
+	signRegister
 } from './logic.js'
 import { idMaker } from '../public/script/id.js'
 
@@ -77,7 +78,6 @@ app.post('/', async (req, res) => {
     res.send(orderToSave.id)
 })
 app.post('/consultas', async (req, res) => {
-	console.log(req.body)
 	let queryResult
 	if (req.body.presupuesto) {
 		queryResult = await presupuestoQuery(req.body.presupuesto)
@@ -87,6 +87,9 @@ app.post('/consultas', async (req, res) => {
 		queryResult = await nombreApellidoQuery(req.body.nombreApellido)
 	}
 	res.send(queryResult)
+})
+app.post('/signreg', async (req, res) => {
+	signRegister(req.body)
 })
 
 const connectedServer = httpServer.listen(8080, () => { console.log(`Server escuchando en puerto ${connectedServer.address().port}`) })

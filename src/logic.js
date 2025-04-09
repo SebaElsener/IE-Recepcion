@@ -60,15 +60,21 @@ const saveOrder = async (item) => {
 }
 
 const nombreApellidoQuery = async (nombreApellido) => {
-
+	return await presupuestos.getByNameLastname(nombreApellido)
 }
 
 const presupuestoQuery = async (presupuesto) => {
-	return await presupuestos.getById(presupuesto)
+	const order = await presupuestos.getById(presupuesto)
+	return [order]
 }
 
 const dniQuery = async (dni) => {
+	return await presupuestos.getByDni(dni)
+}
 
+const signRegister = async (data) => {
+	const { orderId, sign } = data
+	return await presupuestos.signRegister(orderId, sign)
 }
 
 export {
@@ -83,5 +89,6 @@ export {
 	saveModel,
 	presupuestoQuery,
 	nombreApellidoQuery,
-	dniQuery
+	dniQuery,
+	signRegister
 }

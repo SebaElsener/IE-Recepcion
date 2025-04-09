@@ -19,28 +19,75 @@ const contactoBack = document.getElementById('contacto-back')
 const signImage = document.getElementById('signImage')
 const clearSignContainer = document.getElementById('clearSignContainer')
 const dniLabelBack = document.getElementById('dniLabel-back')
+const presupuestoLabelBack = document.getElementById('presupuestoLabelBack')
+const nombreLabelBack = document.getElementById('nombreLabelBack')
+const signRegContainer = document.getElementById('signRegContainer')
+const sendBtnBack = document.getElementById('sendBtn-back')
 
 const showInfo = (data) => {
-    presupuestoBack.value = data.id
-    fechaRecepcionBack.value = data.fechaRecepcion
-    nombreApellidoBack.value = `Nombre y apellido: ${data.nombreApellido}`
-    dniLabelBack.innerText = 'DNI: ' + data.dni
-    dniBack.value = parseInt(data.dni)
-    dispositivoBack.value = `Dispositivo: ${data.dispositivo}`
-    marcaBack.value = `Marca: ${data.marca}`
-    modeloBack.value = `Modelo: ${data.modelo}`
-    problemaBack.value = `Diagnóstico: ${data.problema}`
-    fechaDiagnosticoBack.value = data.fechaDiagnostico
-    fechaReparacionBack.value = data. fechaReparacion
-    contactoBack.value = `Contacto: ${data.contacto}`
-    console.log(signImage)
-    if (data.firma) {
-        signImage.innerHTML =
-            `
-            <img src="${data.firma} " alt="Firma cliente">
-            `
-        clearSignContainer.innerHTML = ''
-    }
+	sendBtnBack.setAttribute('disabled', 'true')
+	const goFwdPage = document.getElementById('goFwdPage')
+	const goBackPage = document.getElementById('goBackPage')
+	let activePage = 1
+	let fromPage = 0
+	let limitPage = 1
+	let totalPages = data.length / limitPage
+	if (totalPages > 1) {
+		goFwdPage.style.display = 'block'
+		goBackPage.style.display = 'block'
+		goFwdPage.addEventListener('click', () => goFwd())
+		goBackPage.addEventListener('click', () => goBack())
+	}
+	let trimmedOrdersArray = data.slice(fromPage, limitPage)
+
+	const goFwd = () => {
+		if (activePage < totalPages) {
+			fromPage += 1
+			activePage++
+			trimmedOrdersArray = data.slice(
+				fromPage,
+				limitPage * activePage)
+			showData()
+		}
+	}
+
+		const goBack = () => {
+			if (fromPage > 0) {
+				fromPage -= 1
+				activePage--
+				trimmedOrdersArray = data.slice(
+					fromPage,
+					limitPage * activePage
+				)
+				showData()
+			}
+		}
+
+	const showData = () => {
+		//signImage.innerHTML = ''
+		presupuestoLabelBack.innerText = `Presupuesto Nro: ${trimmedOrdersArray[0].id}`
+		fechaRecepcionBack.value = trimmedOrdersArray[0].fechaRecepcion
+		nombreLabelBack.innerHTML = `Nombre y apellido: <span id='nombreApellidoSpan'>${trimmedOrdersArray[0].nombreApellido}</span>`
+		dniLabelBack.innerText = 'DNI: ' + trimmedOrdersArray[0].dni
+		dispositivoBack.value = `Dispositivo: ${trimmedOrdersArray[0].dispositivo}`
+		marcaBack.value = `Marca: ${trimmedOrdersArray[0].marca}`
+		modeloBack.value = `Modelo: ${trimmedOrdersArray[0].modelo}`
+		problemaBack.value = `Diagnóstico: ${trimmedOrdersArray[0].problema}`
+		fechaDiagnosticoBack.value = trimmedOrdersArray[0].fechaDiagnostico
+		fechaReparacionBack.value = trimmedOrdersArray[0].fechaReparacion
+		contactoBack.value = `Contacto: ${trimmedOrdersArray[0].contacto}`
+		if (trimmedOrdersArray[0].firma) {
+			signImage.innerHTML = `
+		<img id='sign' src="${trimmedOrdersArray[0].firma} " alt="Firma cliente">
+		`
+			clearSignContainer.innerHTML = ''
+			signRegContainer.innerHTML = ''
+		} else {
+			signCanvas()
+		}
+	}
+	showData()
+
 }
 
 const postConsulta = async (data) => {
@@ -133,130 +180,165 @@ clientFormBack.addEventListener('submit', (event) => {
 })
 
 /////////////////canvas para firmar
-let limpiar = document.getElementById('limpiar')
-let canvas = document.getElementById('canvas')
-let ctx = canvas.getContext('2d')
-let cw = (canvas.width = 350),
-	cx = cw / 2
-let ch = (canvas.height = 250),
-	cy = ch / 2
+const signCanvas = () => {
+	signImage.innerHTML = `
+		<canvas id="canvas" style="cursor:crosshair;"></canvas>
+	`
+	clearSignContainer.innerHTML = `
+		<a id="limpiar" class="btn btn-outline-secondary btn-sm"><i class="limpiarFirma fas fa-trash-alt">Limpiar firma</i></a>
+	`
+	let limpiar = document.getElementById('limpiar')
+	let canvas = document.getElementById('canvas')
+	let ctx = canvas.getContext('2d')
+	let cw = (canvas.width = 350),
+		cx = cw / 2
+	let ch = (canvas.height = 250),
+		cy = ch / 2
 
-let dibujar = false
-let factorDeAlisamiento = 5
-let Trazados = []
-let puntos = []
-ctx.lineJoin = 'round'
+	let dibujar = false
+	let factorDeAlisamiento = 5
+	let Trazados = []
+	let puntos = []
+	ctx.lineJoin = 'round'
 
-limpiar.addEventListener(
-	'click',
-	function (evt) {
+	limpiar.addEventListener(
+		'click',
+		function (evt) {
+			dibujar = false
+			ctx.clearRect(0, 0, cw, ch)
+			Trazados.length = 0
+			puntos.length = 0
+		},
+		false
+	)
+
+	function iniciarTrazado(evt) {
+		dibujar = true
+		//ctx.clearRect(0, 0, cw, ch);
+		puntos.length = 0
+		ctx.beginPath()
+	}
+
+	function trazar(evt) {
+		if (dibujar) {
+			let m = oMousePos(canvas, evt)
+			puntos.push(m)
+			ctx.lineTo(m.x, m.y)
+			ctx.stroke()
+		}
+	}
+
+	canvas.addEventListener('mousedown', iniciarTrazado, false)
+	canvas.addEventListener(
+		'touchstart',
+		(event) => iniciarTrazado(event.touches[0]),
+		false
+	)
+
+	canvas.addEventListener('mouseup', redibujarTrazados, false)
+	canvas.addEventListener(
+		'touchend',
+		(event) => redibujarTrazados(event.touches[0]),
+		false
+	)
+
+	canvas.addEventListener('mouseout', redibujarTrazados, false)
+
+	canvas.addEventListener('mousemove', trazar, false)
+	canvas.addEventListener(
+		'touchmove',
+		(event) => trazar(event.touches[0]),
+		false
+	)
+
+	function reducirArray(n, elArray) {
+		let nuevoArray = []
+		nuevoArray[0] = elArray[0]
+		for (let i = 0; i < elArray.length; i++) {
+			if (i % n == 0) {
+				nuevoArray[nuevoArray.length] = elArray[i]
+			}
+		}
+		nuevoArray[nuevoArray.length - 1] = elArray[elArray.length - 1]
+		Trazados.push(nuevoArray)
+	}
+
+	function calcularPuntoDeControl(ry, a, b) {
+		let pc = {}
+		pc.x = (ry[a].x + ry[b].x) / 2
+		pc.y = (ry[a].y + ry[b].y) / 2
+		return pc
+	}
+
+	function alisarTrazado(ry) {
+		if (ry.length > 1) {
+			let ultimoPunto = ry.length - 1
+			ctx.beginPath()
+			ctx.moveTo(ry[0].x, ry[0].y)
+			for (let i = 1; i < ry.length - 2; i++) {
+				let pc = calcularPuntoDeControl(ry, i, i + 1)
+				ctx.quadraticCurveTo(ry[i].x, ry[i].y, pc.x, pc.y)
+			}
+			ctx.quadraticCurveTo(
+				ry[ultimoPunto - 1].x,
+				ry[ultimoPunto - 1].y,
+				ry[ultimoPunto].x,
+				ry[ultimoPunto].y
+			)
+			ctx.stroke()
+		}
+	}
+
+	function redibujarTrazados() {
+		dibujar = false
+		ctx.clearRect(0, 0, cw, ch)
+		reducirArray(factorDeAlisamiento, puntos)
+		for (let i = 0; i < Trazados.length; i++) alisarTrazado(Trazados[i])
+	}
+
+	function oMousePos(canvas, evt) {
+		let ClientRect = canvas.getBoundingClientRect()
+		return {
+			//objeto
+			x: Math.round(evt.clientX - ClientRect.left),
+			y: Math.round(evt.clientY - ClientRect.top)
+		}
+	}
+
+	/* Enviar el trazado */
+	// function GuardarTrazado() {
+	// 	imagen.value = document.getElementById('canvas').toDataURL('image/png')
+	// 	//document.forms['incineracionForm'].submit();
+	// }
+
+	/* Limpiar pizarra */
+	function limpiarTrazado() {
 		dibujar = false
 		ctx.clearRect(0, 0, cw, ch)
 		Trazados.length = 0
 		puntos.length = 0
-	},
-	false
-)
-
-function iniciarTrazado(evt) {
-	dibujar = true
-	//ctx.clearRect(0, 0, cw, ch);
-	puntos.length = 0
-	ctx.beginPath()
-}
-
-function trazar(evt) {
-	if (dibujar) {
-		let m = oMousePos(canvas, evt)
-		puntos.push(m)
-		ctx.lineTo(m.x, m.y)
-		ctx.stroke()
 	}
-}
-
-canvas.addEventListener('mousedown', iniciarTrazado, false)
-canvas.addEventListener(
-	'touchstart',
-	(event) => iniciarTrazado(event.touches[0]),
-	false
-)
-
-canvas.addEventListener('mouseup', redibujarTrazados, false)
-canvas.addEventListener(
-	'touchend',
-	(event) => redibujarTrazados(event.touches[0]),
-	false
-)
-
-canvas.addEventListener('mouseout', redibujarTrazados, false)
-
-canvas.addEventListener('mousemove', trazar, false)
-canvas.addEventListener('touchmove', (event) => trazar(event.touches[0]), false)
-
-function reducirArray(n, elArray) {
-	let nuevoArray = []
-	nuevoArray[0] = elArray[0]
-	for (let i = 0; i < elArray.length; i++) {
-		if (i % n == 0) {
-			nuevoArray[nuevoArray.length] = elArray[i]
-		}
+	canvas.addEventListener('click', (event) => {
+		signRegContainer.innerHTML = `<a id="registrar" class="btn btn-outline-secondary btn-sm"><i class="limpiarFirma fas fa-trash-alt">Registrar firma</i></a>`
+		registrar = document.getElementById('registrar')
+		registrar.addEventListener('click', (event) => {
+			const orderId = presupuestoLabelBack.innerText.match(/(\d+)/g)
+			const sign = document
+				.getElementById('canvas')
+				.toDataURL('image/png')
+			signReg(...orderId, sign)
+		})
+	})
+	const signReg = async (orderId, sign) => {
+		const data = { 'orderId': orderId, 'sign': sign }
+		await fetch('/signreg', {
+			method: 'POST',
+			body: JSON.stringify(data),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+			.then((res) => res.json())
+			.then((data) => showInfo(data))
 	}
-	nuevoArray[nuevoArray.length - 1] = elArray[elArray.length - 1]
-	Trazados.push(nuevoArray)
-}
-
-function calcularPuntoDeControl(ry, a, b) {
-	let pc = {}
-	pc.x = (ry[a].x + ry[b].x) / 2
-	pc.y = (ry[a].y + ry[b].y) / 2
-	return pc
-}
-
-function alisarTrazado(ry) {
-	if (ry.length > 1) {
-		let ultimoPunto = ry.length - 1
-		ctx.beginPath()
-		ctx.moveTo(ry[0].x, ry[0].y)
-		for (let i = 1; i < ry.length - 2; i++) {
-			let pc = calcularPuntoDeControl(ry, i, i + 1)
-			ctx.quadraticCurveTo(ry[i].x, ry[i].y, pc.x, pc.y)
-		}
-		ctx.quadraticCurveTo(
-			ry[ultimoPunto - 1].x,
-			ry[ultimoPunto - 1].y,
-			ry[ultimoPunto].x,
-			ry[ultimoPunto].y
-		)
-		ctx.stroke()
-	}
-}
-
-function redibujarTrazados() {
-	dibujar = false
-	ctx.clearRect(0, 0, cw, ch)
-	reducirArray(factorDeAlisamiento, puntos)
-	for (let i = 0; i < Trazados.length; i++) alisarTrazado(Trazados[i])
-}
-
-function oMousePos(canvas, evt) {
-	let ClientRect = canvas.getBoundingClientRect()
-	return {
-		//objeto
-		x: Math.round(evt.clientX - ClientRect.left),
-		y: Math.round(evt.clientY - ClientRect.top)
-	}
-}
-
-/* Enviar el trazado */
-// function GuardarTrazado() {
-// 	imagen.value = document.getElementById('canvas').toDataURL('image/png')
-// 	//document.forms['incineracionForm'].submit();
-// }
-
-/* Limpiar pizarra */
-function limpiarTrazado() {
-	dibujar = false
-	ctx.clearRect(0, 0, cw, ch)
-	Trazados.length = 0
-	puntos.length = 0
 }

@@ -1,3 +1,14 @@
+#clientForm-back::after {
+    content: 'ENTREGADO';
+    font-size: 95px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    top: 300px;
+    left: 100px;
+    transform: rotate(320deg);
+    position: fixed;
+    color: rgba(255, 146, 56, 0.11);
+    /* z-index: -1 */
+}
 
 ::-webkit-scrollbar {
     display: none;
@@ -44,7 +55,6 @@
 .sendBtn {
     background: rgba(216, 112, 147, 0.445);
     border: none;
-    margin-top: 25px;
 }
 
 #sendBtn {
@@ -76,16 +86,16 @@
 .nombreApellidoContainer,
 .presupuestoFechaContainer {
     display: flex;
-    gap: 5%;
     margin-top: 0;
+    gap: 3%;
 }
 
 .nombreLabel,
 .dniLabel,
 .presupuestoLabel,
 .fechaLabel {
-    flex-grow: 1;
     border-bottom: 1px solid #2f4f4f33;
+    flex-grow: 1;
 }
 
 .presupuestoLabel,
@@ -117,8 +127,24 @@
     gap: 3rem;
 }
 
+#signImage {
+    border: 1px solid #999;
+    width: 350px;
+    height: 250px;
+}
+
 .fechasContainer {
     display: flex;
+    gap: 2.5rem;
+}
+
+#fechaDiagnostico,
+#fechaReparacion {
+    width: 105px;
+}
+
+#fechasContainerBack {
+    gap: 0
 }
 
 #problema,
@@ -137,4 +163,51 @@
 #dniLabel-back {
     display: flex;
     align-items: baseline;
+}
+
+#sendBtnContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2%;
+}
+
+#sendBtn-back-container {
+    width: 100%;
+}
+
+#sendBtn-back {
+    width: 100%;
+}
+
+.pageLink {
+    margin: 0;
+    font-weight: bold;
+    user-select: none;
+    animation-name: scale;
+    animation-duration: .7s;
+    animation-iteration-count: infinite;
+    cursor: pointer;
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#goFwdPage,
+#goBackPage {
+    display: none;
+}
+
+#sign {
+    width: 100%;
 }

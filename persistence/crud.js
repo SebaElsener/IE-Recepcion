@@ -66,14 +66,45 @@ class Contenedor {
 	}
 
 	async getById(id) {
-		const productsArray = await this.getAll()
+		const ordersArray = await this.getAll()
 		try {
-			const productById = productsArray.find(
-				(product) => product.id === id
+			const orderById = ordersArray.find(
+				(order) => order.id === id
 			)
-			return productById || null
+			return orderById || null
 		} catch (err) {
 			console.log('Error, ', err)
+		}
+	}
+
+	async getByDni(dni) {
+		const ordersArray = await this.getAll()
+		try {
+			const orderByDni = ordersArray.filter(
+				(order) => order.dni === dni
+			)
+			return orderByDni || null
+		} catch (err) {
+			console.log('Error, ', err)
+		}
+	}
+
+	async signRegister(orderId, sign) {
+		try {
+			const ordersArray = await this.getAll()
+			const ordersWithoutOrderId = ordersArray.filter(
+				(order) => order.id !== orderId
+			)
+			const orderToRegisterSign = ordersArray.find(
+				(order) => order.id === orderId
+			)
+			orderToRegisterSign.firma = sign
+			ordersWithoutOrderId.push(orderToRegisterSign)
+			await this.saveData(ordersWithoutOrderId)
+			return sign
+
+		} catch (error) {
+			console.log('error', error)
 		}
 	}
 
