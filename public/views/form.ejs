@@ -30,57 +30,60 @@
                     <div class="front">
                         <form id="clientForm">
                             <div class="form-group presupuestoFechaContainer">
-                            <label class="formLabel presupuestoLabel" for="presupuesto">Presupuesto Nro: 
-                                <input class="formInput" type="number" name="id" id="presupuesto" readonly value='<%= orderId %>'>
-                            </label>
-                            <label class="formLabel fechaLabel" for="fechaRecepcion">Fecha recepción: 
-                                <input class="formInput" id="fechaRecepcion" class="disabledInput" name="fechaRecepcion" readonly type="text">
-                            </label>
+                                <label class="formLabel presupuestoLabel" for="presupuesto">Presupuesto Nro: 
+                                    <input class="formInput" type="number" name="id" id="presupuesto" readonly value='<%= orderId %>'>
+                                </label>
+                                <label class="formLabel fechaLabel" for="fechaRecepcion">Fecha recepción: 
+                                    <input class="formInput" id="fechaRecepcion" class="disabledInput" name="fechaRecepcion" readonly type="text">
+                                </label>
                             </div>
                             <div class="form-group nombreApellidoContainer">
-                            <label class="formLabel nombreLabel" for="nombreApellido">
-                                <input class="formInput" type="text" name="nombreApellido" id="nombreApellido" required placeholder="Nombre y apellido">
-                            </label>
-                            <label class="formLabel dniLabel" for="dni">
-                                <input class="formInput" type="number" name="dni" id="dni" required placeholder="DNI">
-                            </label>
+                                <label class="formLabel nombreLabel" for="nombre">
+                                    <input class="formInput" type="text" name="nombre" id="nombre" required placeholder="Nombre">
+                                </label>
+                                <label class="formLabel nombreLabel" for="apellido">
+                                    <input class="formInput" type="text" name="apellido" id="apellido" required placeholder="Apellido">
+                                </label>
+                                <label class="formLabel dniLabel" for="dni">
+                                    <input class="formInput" type="number" name="dni" id="dni" required placeholder="DNI">
+                                </label>
                             </div>
                             <div class="form-group device-brand-model">
-                            <label class="formLabel" for="dispositivo">
-                                <select class="selectSearch" name="dispositivo" id="dispositivo" required>
-                                    <option value="">Dispositivo</option>
-                                    <% devices.forEach(function(device) { %>
-                                        <option value='<%= device.device %>'>
-                                            <%= device.device %>
-                                        </option>
-                                    <% }) %>
-                                </select>
-                            </label>
-                            <label class="formLabel brand" for="marca">
-                                <select class="selectSearch" name="marca" id="marca" required>
-                                    <option value="">Marca</option>
-                                    <% brands.forEach(function(brand) { %>
-                                        <option value='<%= brand.brand %>'>
-                                            <%= brand.brand %>
-                                        </option>
-                                    <% }) %>
-                                </select>
-                            </label>
-                            <label class="formLabel model" for="modelo">
-                                <select class="selectSearch" name="modelo" id="modelo" required>
-                                    <option value="">Modelo</option>
-                                    <% models.forEach(function(model) { %>
-                                        <option value='<%= model.model %>'>
-                                            <%= model.model %>
-                                        </option>
-                                    <% }) %>
-                                </select>
-                            </label>
+                                <label class="formLabel" for="dispositivo">
+                                    <select class="selectSearch" name="dispositivo" id="dispositivo" required>
+                                        <option value="">Dispositivo</option>
+                                        <% devices.forEach(function(device) { %>
+                                            <option value='<%= device.device %>'>
+                                                <%= device.device %>
+                                            </option>
+                                        <% }) %>
+                                    </select>
+                                </label>
+                                <label class="formLabel brand" for="marca">
+                                    <select class="selectSearch" name="marca" id="marca" required>
+                                        <option value="">Marca</option>
+                                        <% brands.forEach(function(brand) { %>
+                                            <option value='<%= brand.brand %>'>
+                                                <%= brand.brand %>
+                                            </option>
+                                        <% }) %>
+                                    </select>
+                                </label>
+                                <label class="formLabel model" for="modelo">
+                                    <select class="selectSearch" name="modelo" id="modelo" required>
+                                        <option value="">Modelo</option>
+                                        <% models.forEach(function(model) { %>
+                                            <option value='<%= model.model %>'>
+                                                <%= model.model %>
+                                            </option>
+                                        <% }) %>
+                                    </select>
+                                </label>
                             </div>
                             <div class="form-group">
-                            <label class="formLabel problema" for="problema">
-                                <textarea class="form-control" rows="4" name="problema" id="problema" placeholder="Detalle problema" required></textarea>
-                            </label>
+                                <label class="formLabel problema" for="problema">
+                                    <textarea class="form-control" rows="4" name="problema" id="problema" placeholder="Detalle problema" required></textarea>
+                                </label>
                             </div>
                             <div class="form-group fechasContainer">
                                 <label class="formLabel fechaDiagnosticoLabel" for="fechaDiagnostico">Fecha estimada diagnóstico: 
@@ -91,9 +94,9 @@
                                 </label>
                             </div>
                             <div class="form-group">
-                            <label class="formLabel contacto" for="contacto">
-                                <input class="formInput contacto inputUnderLine" type="text" name="contacto" id="contacto" required placeholder="Contacto">
-                            </label>
+                                <label class="formLabel contacto" for="contacto">
+                                    <input class="formInput contacto inputUnderLine" type="text" name="contacto" id="contacto" required placeholder="Contacto">
+                                </label>
                             </div>
                             <button id="sendBtn" class="sendBtn btn btn-outline-primary btn-block" type="submit" formmethod="post" formaction="/">Registrar</button>
                         </form>
@@ -101,36 +104,36 @@
                     <div class="back">
                         <form id="clientForm-back">
                             <div class="form-group presupuestoFechaContainer">
-                            <label id="presupuestoLabelBack" class="formLabel presupuestoLabel" for="presupuesto">Presupuesto Nro: 
-                                <input class="formInput" type="number" name="id" id="presupuesto-back" placeholder="Consultar por presupuesto">
-                            </label>
-                            <label class="formLabel fechaLabel" for="fechaRecepcion">Fecha recepción: 
-                                <input class="formInput" id="fechaRecepcion-back" class="disabledInput" name="fechaRecepcion" readonly type="text">
-                            </label>
+                                <label id="presupuestoLabelBack" class="formLabel presupuestoLabel" for="presupuesto">Presupuesto Nro: 
+                                    <input class="formInput" type="number" name="id" id="presupuesto-back" autocomplete="off" placeholder="Consultar por presupuesto">
+                                </label>
+                                <label class="formLabel fechaLabel" for="fechaRecepcion">Fecha recepción: 
+                                    <input class="formInput" id="fechaRecepcion-back" class="disabledInput" name="fechaRecepcion" readonly type="text">
+                                </label>
                             </div>
                             <div class="form-group nombreApellidoContainer">
-                            <label id="nombreLabelBack" class="formLabel nombreLabel" for="nombreApellido">
-                                <input class="formInput" type="text" name="nombreApellido" id="nombreApellido-back" placeholder="Consultar por nombre o apellido">
-                            </label>
-                            <label class="formLabel dniLabel" for="dni" id="dniLabel-back">
-                                <input class="formInput" type="number" name="dni" id="dni-back" placeholder="Consultar por DNI">
-                            </label>
+                                <label id="nombreLabelBack" class="formLabel nombreLabel" for="nombreApellido">
+                                    <input class="formInput" type="text" name="nombreApellido" id="nombreApellido-back" autocomplete="off" placeholder="Consultar por nombre o apellido">
+                                </label>
+                                <label class="formLabel dniLabel" for="dni" id="dniLabel-back">
+                                    <input class="formInput" type="number" name="dni" id="dni-back" autocomplete="off" placeholder="Consultar por DNI">
+                                </label>
                             </div>
                             <div class="form-group device-brand-model">
-                            <label class="formLabel" for="dispositivo-back">
-                                <input class="selectSearch" name="dispositivo-back" id="dispositivo-back" readonly>
-                            </label>
-                            <label class="formLabel brand" for="marca-back">
-                                <input class="selectSearch" name="marca-back" id="marca-back" readonly>
-                            </label>
-                            <label class="formLabel model" for="modelo-back">
-                                <input class="selectSearch" name="modelo-back" id="modelo-back" readonly>
-                            </label>
+                                <label class="formLabel" for="dispositivo-back">
+                                    <input class="selectSearch" name="dispositivo-back" id="dispositivo-back" readonly>
+                                </label>
+                                <label class="formLabel brand" for="marca-back">
+                                    <input class="selectSearch" name="marca-back" id="marca-back" readonly>
+                                </label>
+                                <label class="formLabel model" for="modelo-back">
+                                    <input class="selectSearch" name="modelo-back" id="modelo-back" readonly>
+                                </label>
                             </div>
                             <div class="form-group">
-                            <label class="formLabel problema" for="problema">
-                                <textarea class="form-control" rows="4" name="problema" id="problema-back" readonly></textarea>
-                            </label>
+                                <label class="formLabel problema" for="problema">
+                                    <textarea class="form-control" rows="4" name="problema" id="problema-back" readonly></textarea>
+                                </label>
                             </div>
                             <div id="fechasContainerBack" class="form-group fechasContainer">
                                 <label class="formLabel fechaDiagnosticoLabel" for="fechaDiagnostico">Fecha estimada diagnóstico: 
@@ -141,9 +144,9 @@
                                 </label>
                             </div>
                             <div class="form-group">
-                            <label class="formLabel contacto" for="contacto">
-                                <input class="formInput contacto inputUnderLine" type="text" name="contacto" id="contacto-back" readonly>
-                            </label>
+                                <label class="formLabel contacto" for="contacto">
+                                    <input class="formInput contacto inputUnderLine" type="text" name="contacto" id="contacto-back" readonly>
+                                </label>
                             </div>
                             <div id="signContainer" class="form-group signContainer">
                                 <div id="signImage">
@@ -151,7 +154,6 @@
                                 </div>
                                 <div id="signOptionsContainer">
                                     <div id="clearSignContainer">
-                                        <!-- <a id="limpiar" class="btn btn-outline-secondary btn-sm"><i class="limpiarFirma fas fa-trash-alt">Limpiar firma</i></a> -->
                                     </div>
                                     <div id="signRegContainer">
                                     </div>

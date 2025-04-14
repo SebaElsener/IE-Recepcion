@@ -1,4 +1,4 @@
-#clientForm-back::after {
+.entregado::after {
     content: 'ENTREGADO';
     font-size: 95px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

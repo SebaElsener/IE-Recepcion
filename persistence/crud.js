@@ -68,10 +68,8 @@ class Contenedor {
 	async getById(id) {
 		const ordersArray = await this.getAll()
 		try {
-			const orderById = ordersArray.find(
-				(order) => order.id === id
-			)
-			return orderById || null
+			const orderById = ordersArray.find((order) => order.id === id)
+			return [orderById] || []
 		} catch (err) {
 			console.log('Error, ', err)
 		}
@@ -83,7 +81,7 @@ class Contenedor {
 			const orderByDni = ordersArray.filter(
 				(order) => order.dni === dni
 			)
-			return orderByDni || null
+			return orderByDni || []
 		} catch (err) {
 			console.log('Error, ', err)
 		}
@@ -102,7 +100,37 @@ class Contenedor {
 			ordersWithoutOrderId.push(orderToRegisterSign)
 			await this.saveData(ordersWithoutOrderId)
 			return sign
+		} catch (error) {
+			console.log('error', error)
+		}
+	}
 
+	async getByNameLastname(nombreApellido) {
+		try {
+			const ordersArray = await this.getAll()
+			const nombreApellidoSeparados = nombreApellido.trim().toUpperCase().split(" ")
+			let resultado = []
+			let resultadoExacto = []
+			ordersArray.map(
+				order => {
+					if (
+						order.nombre === nombreApellidoSeparados[0] &&
+						order.apellido === nombreApellidoSeparados[1]
+					)	resultadoExacto.push(order)
+						else if (
+							order.nombre === nombreApellidoSeparados[0] ||
+							order.nombre === nombreApellidoSeparados[1]
+						)
+							resultado.push(order)
+						else if (
+							order.apellido === nombreApellidoSeparados[0] ||
+							order.apellido === nombreApellidoSeparados[1]
+						)
+							resultado.push(order)
+				}
+			)
+			if (resultadoExacto.length !== 0) { return resultadoExacto }
+			return resultado || []
 		} catch (error) {
 			console.log('error', error)
 		}

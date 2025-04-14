@@ -25,7 +25,8 @@ clientForm.addEventListener('submit', (event) => {
 	event.preventDefault()
 	const presupuesto = document.getElementById('presupuesto').value
 	const fechaRecepcion = document.getElementById('fechaRecepcion').value
-	const nombreApellido = document.getElementById('nombreApellido').value
+	const nombre = document.getElementById('nombre').value
+	const apellido = document.getElementById('apellido').value
 	const dni = document.getElementById('dni').value
 	const dispositivo = document.getElementById('dispositivo').value
 	const marca = document.getElementById('marca').value
@@ -37,7 +38,8 @@ clientForm.addEventListener('submit', (event) => {
 	const orderToSave = {
 		id: presupuesto,
 		fechaRecepcion: fechaRecepcion,
-		nombreApellido: nombreApellido,
+		nombre: nombre.toUpperCase(),
+		apellido: apellido.toUpperCase(),
 		dni: dni,
 		dispositivo: dispositivo,
 		marca: marca,
@@ -62,7 +64,17 @@ const showToast = (orderId) => {
 		position: 'left', // `left`, `center` or `right`
 		stopOnFocus: true, // Prevents dismissing of toast on hover
 		style: {
-			background: 'linear-gradient(to right, #00b09b, #96c93d)'
+			width: '300px',
+			height: 'auto',
+			textAlign: 'center',
+			display: 'flex',
+			justifyContent: 'center',
+			left: '250px',
+			fontSize: '1.5rem',
+			fontStyle: 'italic',
+			color: '#959090',
+			background: '#fefe7b',
+			border: '2px solid #fe0808'
 		},
 		offset: {
 			x: 150,

@@ -38,5 +38,9 @@
   {
     "id": 10,
     "device": "secador de pelo"
+  },
+  {
+    "id": 11,
+    "device": "licuadora"
   }
 ]

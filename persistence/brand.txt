@@ -42,5 +42,17 @@
   {
     "id": 11,
     "brand": "marca4"
+  },
+  {
+    "id": 12,
+    "brand": "lalal"
+  },
+  {
+    "id": 13,
+    "brand": "liliana"
+  },
+  {
+    "id": 14,
+    "brand": "Lenovo"
   }
 ]

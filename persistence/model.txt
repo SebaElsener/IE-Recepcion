@@ -42,5 +42,13 @@
   {
     "id": 11,
     "model": "Nuevo modelo"
+  },
+  {
+    "id": 12,
+    "model": "xx27"
+  },
+  {
+    "id": 13,
+    "model": "XE254"
   }
 ]

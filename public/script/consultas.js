@@ -23,8 +23,14 @@ const presupuestoLabelBack = document.getElementById('presupuestoLabelBack')
 const nombreLabelBack = document.getElementById('nombreLabelBack')
 const signRegContainer = document.getElementById('signRegContainer')
 const sendBtnBack = document.getElementById('sendBtn-back')
+const entregado = document.querySelector('.entregado')
+let signed = false
 
 const showInfo = (data) => {
+	if (data.length === 0) {
+		showNoDataToast()
+		return
+	}
 	sendBtnBack.setAttribute('disabled', 'true')
 	const goFwdPage = document.getElementById('goFwdPage')
 	const goBackPage = document.getElementById('goBackPage')
@@ -51,23 +57,22 @@ const showInfo = (data) => {
 		}
 	}
 
-		const goBack = () => {
-			if (fromPage > 0) {
-				fromPage -= 1
-				activePage--
-				trimmedOrdersArray = data.slice(
-					fromPage,
-					limitPage * activePage
-				)
-				showData()
-			}
+	const goBack = () => {
+		if (fromPage > 0) {
+			fromPage -= 1
+			activePage--
+			trimmedOrdersArray = data.slice(
+				fromPage,
+				limitPage * activePage
+			)
+			showData()
 		}
+	}
 
 	const showData = () => {
-		//signImage.innerHTML = ''
 		presupuestoLabelBack.innerText = `Presupuesto Nro: ${trimmedOrdersArray[0].id}`
 		fechaRecepcionBack.value = trimmedOrdersArray[0].fechaRecepcion
-		nombreLabelBack.innerHTML = `Nombre y apellido: <span id='nombreApellidoSpan'>${trimmedOrdersArray[0].nombreApellido}</span>`
+		nombreLabelBack.innerHTML = `Nombre y apellido: <span id='nombreApellidoSpan'>${trimmedOrdersArray[0].nombre} ${trimmedOrdersArray[0].apellido}</span>`
 		dniLabelBack.innerText = 'DNI: ' + trimmedOrdersArray[0].dni
 		dispositivoBack.value = `Dispositivo: ${trimmedOrdersArray[0].dispositivo}`
 		marcaBack.value = `Marca: ${trimmedOrdersArray[0].marca}`
@@ -77,14 +82,17 @@ const showInfo = (data) => {
 		fechaReparacionBack.value = trimmedOrdersArray[0].fechaReparacion
 		contactoBack.value = `Contacto: ${trimmedOrdersArray[0].contacto}`
 		if (trimmedOrdersArray[0].firma) {
-			signImage.innerHTML = `
-		<img id='sign' src="${trimmedOrdersArray[0].firma} " alt="Firma cliente">
-		`
+			signImage.innerHTML = 
+				`
+					<img id='sign' src="${trimmedOrdersArray[0].firma} " alt="Firma cliente">
+				`
 			clearSignContainer.innerHTML = ''
 			signRegContainer.innerHTML = ''
-		} else {
-			signCanvas()
-		}
+			clientFormBack.classList.add('entregado')
+		}	else {
+				clientFormBack.classList.remove('entregado')
+				signCanvas()
+			}
 	}
 	showData()
 
@@ -305,12 +313,6 @@ const signCanvas = () => {
 		}
 	}
 
-	/* Enviar el trazado */
-	// function GuardarTrazado() {
-	// 	imagen.value = document.getElementById('canvas').toDataURL('image/png')
-	// 	//document.forms['incineracionForm'].submit();
-	// }
-
 	/* Limpiar pizarra */
 	function limpiarTrazado() {
 		dibujar = false
@@ -340,5 +342,73 @@ const signCanvas = () => {
 		})
 			.then((res) => res.json())
 			.then((data) => showInfo(data))
+			.then(postSignRegisterOperations())
 	}
+	const postSignRegisterOperations = () => {
+		const nombreApellidoSpan =
+			document.getElementById('nombreApellidoSpan').innerText
+		showSignRegToast(nombreApellidoSpan)
+	}
+}
+
+const showSignRegToast = (clientName) => {
+	Toastify({
+		text: `Firma de cliente ${clientName} registrada\nClick aquí para continuar`,
+		duration: -1,
+		destination: '/',
+		newWindow: false,
+		close: false,
+		gravity: 'top', // `top` or `bottom`
+		position: 'center', // `left`, `center` or `right`
+		stopOnFocus: true, // Prevents dismissing of toast on hover
+		style: {
+			width: '300px',
+			height: 'auto',
+			textAlign: 'center',
+			display: 'flex',
+			justifyContent: 'center',
+			left: '250px',	
+			fontSize: '1.5rem',
+    		fontStyle: 'italic',
+			color: '#959090',
+			background: '#fefe7b',
+    		border: '2px solid #fe0808'
+		},
+		offset: {
+			x: 150,
+			y: 150
+		}
+		//onClick: function () {} // Callback after click
+	}).showToast()
+}
+
+const showNoDataToast = () => {
+	Toastify({
+		text: `NO EXISTEN REGISTROS PARA ESTA CONSULTA\nClick aquí para continuar`,
+		duration: -1,
+		destination: '/',
+		newWindow: false,
+		close: false,
+		gravity: 'top', // `top` or `bottom`
+		position: 'center', // `left`, `center` or `right`
+		stopOnFocus: true, // Prevents dismissing of toast on hover
+		style: {
+			width: '300px',
+			height: 'auto',
+			textAlign: 'center',
+			display: 'flex',
+			justifyContent: 'center',
+			left: '250px',
+			fontSize: '1.5rem',
+			fontStyle: 'italic',
+			color: '#959090',
+			background: '#fefe7b',
+			border: '2px solid #fe0808'
+		},
+		offset: {
+			x: 150,
+			y: 150
+		}
+		//onClick: function () {} // Callback after click
+	}).showToast()
 }

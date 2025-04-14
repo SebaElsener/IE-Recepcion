@@ -64,8 +64,7 @@ const nombreApellidoQuery = async (nombreApellido) => {
 }
 
 const presupuestoQuery = async (presupuesto) => {
-	const order = await presupuestos.getById(presupuesto)
-	return [order]
+	return await presupuestos.getById(presupuesto)
 }
 
 const dniQuery = async (dni) => {
